@@ -13,6 +13,12 @@
                 <th>Activiteit</th>
                 <th>Aankondiging</th>
             </tr>
+            {% for event in rss["entries"] %}
+            <tr>
+                <th>DATUM</th>
+                <td>{{ event["title"] }}</td>
+            </tr>
+            {% endfor %}
         </table>
     </body>
 </html>
