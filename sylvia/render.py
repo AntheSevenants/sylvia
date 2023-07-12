@@ -26,7 +26,7 @@ def print_time(input_datetime):
 def print_date_time(input_datetime):
     event_timestamp = date_from_string(input_datetime)
 
-    return event_timestamp.strftime("%-d %B %Y %-H:%M")
+    return event_timestamp.strftime("%-d %B %Y %H:%M")
 
 def calendar(rss):
     return template.render(rss=rss,
