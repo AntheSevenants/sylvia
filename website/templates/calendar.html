@@ -2,6 +2,11 @@
 <html>
     <head>
         <title>Agenda OE Taalkunde</title>
+        <style>
+            .left {
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
         <table>
@@ -15,7 +20,7 @@
             </tr>
             {% for event in rss["entries"] %}
             <tr>
-                <th>{{ print_date_time(event["updated"]) }}</th>
+                <th class="left">{{ print_date_time(event["updated"]) }}</th>
                 <td>{{ event["title"] }}</td>
             </tr>
             {% endfor %}
