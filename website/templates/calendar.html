@@ -8,37 +8,59 @@
                 font-family: 'Open Sans', sans-serif;
             }
 
+            table {
+                border-collapse: collapse;
+            }
+
             .left {
                 text-align: left;
             }
 
-            th.date {
-                padding-left: 0.5em;
-                padding-right: 0.5em;
+            th.head {
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+
+            th, td {
+                padding: 0.25em;
+                border: 1px solid #ffffff;
             }
 
             .cal {
                 width: 16px;
                 height: 16px;
             }
+
+            .darkblue {
+                background-color: #4472C4;
+                color: #ffffff;
+            }
+
+            .darkblue .textblack {
+                color: #111111;
+            }
+
+            .lightblue {
+                background-color: #B4C6E7;
+                color: #111111;
+            }
         </style>
     </head>
     <body>
         <table>
             <tr>
-                <th colspan="3">Agenda OE Taalkunde</th>
+                <th class="darkblue head" colspan="4">Agenda OE Taalkunde</th>
             </tr>
             <tr>
-                <th></th>
-                <th>Datum</th>
-                <th>Activiteit</th>
-                <th>Aankondiging</th>
+                <th class="darkblue textblack" colspan="2">Datum</th>
+                <th class="darkblue">Activiteit</th>
+                <th class="darkblue">Aankondiging</th>
             </tr>
             {% for event in rss["entries"] %}
             <tr>
-                <th><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
-                <th class="date left">{{ print_date_time(event["updated"]) }}</th>
-                <td><a target="_blank" href="{{ event['link'] }}">{{ event["title"] }}</a><br>
+                <th class="darkblue"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
+                <th class="lightblue date left">{{ print_date_time(event["updated"]) }}</th>
+                <td class="lightblue"><a target="_blank" href="{{ event['link'] }}">{{ event["title"] }}</a><br>
                     {{ event["description"] }}</td>
             </tr>
             {% endfor %}
