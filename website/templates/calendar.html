@@ -12,8 +12,14 @@
                 text-align: left;
             }
 
-            th:first-child {
+            th.date {
+                padding-left: 0.5em;
                 padding-right: 0.5em;
+            }
+
+            .cal {
+                width: 16px;
+                height: 16px;
             }
         </style>
     </head>
@@ -23,13 +29,15 @@
                 <th colspan="3">Agenda OE Taalkunde</th>
             </tr>
             <tr>
+                <th></th>
                 <th>Datum</th>
                 <th>Activiteit</th>
                 <th>Aankondiging</th>
             </tr>
             {% for event in rss["entries"] %}
             <tr>
-                <th class="left">{{ print_date_time(event["updated"]) }}</th>
+                <th><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
+                <th class="date left">{{ print_date_time(event["updated"]) }}</th>
                 <td><a target="_blank" href="{{ event['link'] }}">{{ event["title"] }}</a><br>
                     {{ event["description"] }}</td>
             </tr>
