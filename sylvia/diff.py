@@ -113,7 +113,17 @@ def get_updates(old_cache: dict, new_cache: dict):
 
     return changed_events
 
-def join(rss, changed_events):
+def join(rss: dict, changed_events: dict):
+    """Join the RSS entries with calendar update information
+
+    Args:
+        rss (dict): the RSS feed to enrich
+        changed_events (dict): a dictionary which dictates which elements have changed
+
+    Returns:
+        dict: RSS enriched with change information
+    """
+
     for event in rss:
         key = event["link"]
         if key in changed_events:
