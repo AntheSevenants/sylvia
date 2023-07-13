@@ -12,11 +12,11 @@ cache = {}
 for entry in rss:
     key = entry["link"]
     date_time = print_date_time(entry["updated"])
-    description = entry["description"]
 
     cache[key] = {
+        "title": entry["title"],
         "date_time": date_time,
-        "description": description
+        "description": entry["description"]
     }
 
 with open("cache.json", "wt") as writer:
