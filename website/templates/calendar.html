@@ -56,7 +56,7 @@
                 <th class="darkblue">Activiteit</th>
                 <th class="darkblue">Aankondiging</th>
             </tr>
-            {% for event in rss["entries"] %}
+            {% for event in rss %}
             <tr>
                 <th class="darkblue"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
                 <th class="lightblue date left">{{ print_date_time(event["updated"]) }}</th>
