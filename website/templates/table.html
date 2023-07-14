@@ -1,4 +1,4 @@
-{% macro table(events, print_date_time, show_header=True) -%}
+{% macro table(events, print_date, print_time, print_date_time, mark_changes=False, show_header=True) -%}
     <table>
         {% if show_header %}
         <tr>
@@ -12,9 +12,34 @@
         {% for event in events %}
         <tr>
             <th class="darkblue"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
-            <th class="lightblue date left">{{ print_date_time(event["updated"]) }}</th>
-            <td class="lightblue"><a target="_blank" href="{{ event['link'] }}">{{ event["title"] }}</a><br>
-                {{ event["description"] }}</td>
+            <th class="lightblue date left">
+                {% if mark_changes and event["change"] == "changed" and ("time" in event["changes"] or "date" in event["changes"]) %}
+                    {% if "time" in event["changes"] and "date" not in event["changes"] %}
+                        {{ print_date(event["updated"]) }} <s>{{ event["old_event"]["time"] }}</s> → <span style="color: red;">{{ print_time(event["updated"]) }}</span>
+                    {% else %}
+                        <s>{{ event["old_event"]["date_time"] }}</s><br>
+                        ↓<br>
+                        {{ print_date_time(event["updated"]) }} 
+                    {% endif %}
+                {% else %}
+                    {{ print_date_time(event["updated"]) }} 
+                {% endif %}
+            </th>
+            <td class="lightblue">
+                <a target="_blank" href="{{ event['link'] }}">
+                    {% if mark_changes and event["change"] == "changed" and "title" in event["changes"] %}
+                        <span style="color: red;">{{ event["title"] }}</span>
+                    {% else %}
+                        {{ event["title"] }}
+                    {% endif %}
+                </a>
+                <br>
+                {% if mark_changes and event["change"] == "changed" and "description" in event["changes"] %}
+                    <span style="color: red;">{{ event["description"] }}</span>
+                {% else %}
+                    {{ event["description"] }}
+                {% endif %}
+               </td>
         </tr>
         {% endfor %}
     </table>
