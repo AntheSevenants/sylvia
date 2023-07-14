@@ -1,3 +1,5 @@
+import os
+import json
 import pytz
 import sylvia.render
 
@@ -21,6 +23,23 @@ def get_cache_files(cache_path: str):
     stems.sort(reverse=True)
 
     return stems
+
+def get_cache_from_path(cache_file: str):
+    if cache_file == "none":
+        cache_old = None
+    else:
+        cache_file = f"{cache_file}.json"
+        cache_dir = os.environ['CACHE_DIR']
+        cache_path = f"{cache_dir}/{cache_file}"
+
+        if not os.path.exists(cache_path):
+            return sylvia.error.generate("Invalid cache file.")
+    
+        # Open the old cache
+        with open(cache_path, "rt") as reader:
+            cache_old = json.loads(reader.read())
+
+    return cache_old
 
 def get_cache(rss: dict):
     """Generate cache dict from RSS entries
