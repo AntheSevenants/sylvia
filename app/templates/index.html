@@ -9,7 +9,7 @@
     <form action="/calendar" method="POST">
         <div class="mb-3">
             <label for="changes_source" class="form-label">Show changes from:</label>
-            <select id="changes_source" class="form-select">
+            <select id="changes_source" name="changes_source" class="form-select">
                 <option value="none">Do not show changes</option>
                 {% for cache_file in cache_files %}
                 <option value="{{ cache_file }}">{{ cache_file}}</option>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Calendar generated{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Calendar generated</h1>
+    <p>Your new calendar is generated. Below, a preview is given showing what the generated calendar looks like.</p>
+    <hr>
+    {{ calendar_html | safe }}
+    <hr>
+    <p>If you're happy with this calendar, click the button below to download it as a Word file. You can then copy the contents of this Word file to an email and send it as a circular.</p>
+    <form class="mb-3" action="/download" method="POST">
+        <input type="hidden" name="changes_source" value="{{ cache_file }}">
+        <button type="submit" class="btn btn-primary">Download calendar</button>
+    </form>
+    <p class="text-muted">If you download the calendar, a new checkpoint will be made. You can use this checkpoint next time to show the changes from now.</p>
+{% endblock %}
