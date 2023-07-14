@@ -21,7 +21,7 @@ def print_date(input_datetime):
 def print_time(input_datetime):
     event_timestamp = date_from_string(input_datetime)
 
-    return event_timestamp.strftime("%-H:%M")
+    return event_timestamp.strftime("%H:%M")
 
 def print_date_time(input_datetime):
     event_timestamp = date_from_string(input_datetime)
