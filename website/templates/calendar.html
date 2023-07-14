@@ -48,7 +48,21 @@
     </head>
     <body>
         {% from 'table.html' import table %}
+
+        <p><strong>Wijzigingen van de week</strong></p> 
+ 
+        <p><u>Toegevoegd/Added</u></p>
+
+        {{ table(rss | selectattr("change", "equalto", "added"), print_date, print_time, print_date_time, show_header=False) }}
         
-        {{ table(rss, print_date_time) }}
+        <p><u>Gewijzigd/Modified</u></p>
+
+        {{ table(rss | selectattr("change", "equalto", "changed"), print_date, print_time, print_date_time, mark_changes=True, show_header=False) }}
+
+        <p><u>Geannuleerd/Cancelled</u></p>
+
+        {{ table(rss | selectattr("change", "equalto", "deleted"), print_date, print_time, print_date_time, show_header=False) }}
+
+        {{ table(rss, print_date, print_time, print_date_time) }}
     </body>
 </html>
