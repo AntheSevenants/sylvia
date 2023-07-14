@@ -1,0 +1,20 @@
+{% macro table(events, print_date_time) -%}
+    <table>
+        <tr>
+            <th class="darkblue head" colspan="3">Agenda OE Taalkunde</th>
+        </tr>
+        <tr>
+            <th class="darkblue textblack" colspan="2">Datum</th>
+            <th class="darkblue">Activiteit</th>
+        </tr>
+        {% for event in events %}
+        <tr>
+            <th class="darkblue"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
+            <th class="lightblue date left">{{ print_date_time(event["updated"]) }}</th>
+            <td class="lightblue"><a target="_blank" href="{{ event['link'] }}">{{ event["title"] }}</a><br>
+                {{ event["description"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{%- endmacro %}
+
