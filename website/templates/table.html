@@ -1,4 +1,5 @@
 {% macro table(events, print_date, print_time, print_date_time, mark_changes=False, show_header=True) -%}
+    {% if events|count > 0 %}
     <table>
         {% if show_header %}
         <tr>
@@ -43,5 +44,8 @@
         </tr>
         {% endfor %}
     </table>
+    {% else %}
+    /
+    {% endif %}
 {%- endmacro %}
 
