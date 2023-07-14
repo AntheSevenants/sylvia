@@ -111,6 +111,8 @@ def get_updates(old_cache: dict, new_cache: dict):
             if len(change_object["changes"]) == 0:
                 continue
 
+            change_object["old_event"] = old_cache[key]
+
             changed_events.append(change_object)
 
     changed_event_keys = list(map(lambda update: update["key"], changed_events))
@@ -136,5 +138,6 @@ def join(rss: dict, changed_events: dict):
             
             if event["change"] == "changed":
                 event["changes"] = changed_events[key]["changes"]
+                event["old_event"] = changed_events[key]["old_event"]
 
     return rss
