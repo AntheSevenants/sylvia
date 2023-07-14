@@ -1,8 +1,10 @@
-{% macro table(events, print_date_time) -%}
+{% macro table(events, print_date_time, show_header=True) -%}
     <table>
+        {% if show_header %}
         <tr>
             <th class="darkblue head" colspan="3">Agenda OE Taalkunde</th>
         </tr>
+        {% endif %}
         <tr>
             <th class="darkblue textblack" colspan="2">Datum</th>
             <th class="darkblue">Activiteit</th>
