@@ -1,1 +1,22 @@
-joechei
+{% extends "base.html" %}
+{% block title %}Generate a calendar{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Generate the weekly calendar</h1>
+    <p>Welcome to <em>sylvia</em>, the tool which generates a calendar for you based on an RSS feed. If you generate a calendar now, it will be based on the current state of the RSS feed.</p>
+    <form action="/calendar" method="POST">
+        <div class="mb-3">
+            <label for="changes_source" class="form-label">Show changes from:</label>
+            <select id="changes_source" class="form-select">
+                <option value="none">Do not show changes</option>
+                {% for cache_file in cache_files %}
+                <option value="{{ cache_file }}">{{ cache_file}}</option>
+                {% endfor %}
+              </select>
+            <div id="changesNotice" class="form-text">Select the last time you generated a calendar. The tool will check what events have been added or changed since then. Events since passed will be ignored.</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Generate calendar</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>{% block title %}{% endblock %} - sylvia</title>
+    {% endblock %}
+</head>
+<body>
+    <header class="d-flex flex-wrap flex-column align-content-center mb-4 py-3 border-bottom text-center" style="background-color: #4472C4;">
+        <a href="/" class="d-flex align-items-center pb-1 mb-md-0 me-md-auto link-body-emphasis text-decoration-none fw-light text-white">
+          <span class="fs-2 lh-sm" style="letter-spacing: 2px;">sylvia</span>
+        </a>
+      </header>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="container">
+        {% block footer %}
+        <!--sylvia by Anthe Sevenants-->
+        {% endblock %}
+    </footer>
+</body>
+</html>
