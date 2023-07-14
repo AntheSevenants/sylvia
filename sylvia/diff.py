@@ -3,6 +3,7 @@ import sylvia.render
 
 from datetime import datetime
 from glob import glob
+from pathlib import Path
 
 brussels = pytz.timezone("Europe/Brussels")
 
@@ -13,10 +14,10 @@ def get_cache_files(cache_path: str):
         cache_path (str): the path where all cache files are stored
 
     Returns:
-        list[str]: a list of all available JSON cache files
+        list[str]: a list of all available JSON cache files (stems)
     """
 
-    return list(glob(f"{cache_path}/*.json"))
+    return [ Path(cache_file).stem for cache_file in glob(f"{cache_path}/*.json") ]
 
 def get_cache(rss: dict):
     """Generate cache dict from RSS entries
