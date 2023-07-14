@@ -2,8 +2,21 @@ import pytz
 import sylvia.render
 
 from datetime import datetime
+from glob import glob
 
 brussels = pytz.timezone("Europe/Brussels")
+
+def get_cache_files(cache_path: str):
+    """Get a list of all available cache files in a given directory
+
+    Args:
+        cache_path (str): the path where all cache files are stored
+
+    Returns:
+        list[str]: a list of all available JSON cache files
+    """
+
+    return list(glob(f"{cache_path}/*.json"))
 
 def get_cache(rss: dict):
     """Generate cache dict from RSS entries
