@@ -17,7 +17,10 @@ def get_cache_files(cache_path: str):
         list[str]: a list of all available JSON cache files (stems)
     """
 
-    return [ Path(cache_file).stem for cache_file in glob(f"{cache_path}/*.json") ]
+    stems = [ Path(cache_file).stem for cache_file in glob(f"{cache_path}/*.json") ]
+    stems.sort(reverse=True)
+
+    return stems
 
 def get_cache(rss: dict):
     """Generate cache dict from RSS entries
