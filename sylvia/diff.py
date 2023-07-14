@@ -19,11 +19,12 @@ def get_cache(rss: dict):
 
     for entry in rss:
         key = entry["link"]
-        date_time = sylvia.render.print_date_time(entry["updated"])
 
         cache[key] = {
             "title": entry["title"],
-            "date_time": date_time,
+            "date_time": sylvia.render.print_date_time(entry["updated"]),
+            "date": sylvia.render.print_date(entry["updated"]),
+            "time": sylvia.render.print_time(entry["updated"]),
             "description": entry["description"]
         }
 
@@ -89,8 +90,12 @@ def get_updates(old_cache: dict, new_cache: dict):
                                 "changes": [] }
 
             # Difference in date/time?
-            if old_cache[key]["date_time"] != new_cache[key]["date_time"]:
-                change_object["changes"].append("date_time")
+            if old_cache[key]["date"] != new_cache[key]["date"]:
+                change_object["changes"].append("date")
+                print(key_friendly, "date changed")
+
+            if old_cache[key]["time"] != new_cache[key]["time"]:
+                change_object["changes"].append("time")
                 print(key_friendly, "time changed")
 
             # Difference in title?
