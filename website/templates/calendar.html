@@ -63,6 +63,8 @@
 
         {{ table(rss | selectattr("change", "equalto", "removed") | list, print_date, print_time, print_date_time, show_header=False) }}
 
+        <p style="color: #00B050; font-style: italic;"><b>!</b> De OE-agenda wordt in principe op maandag uitgestuurd. Gelieve activiteiten die men in de agenda wil vermeld zien telkens uiterlijk zondagavond in te dienen bij XXX. Activiteiten die XXX later bereiken zullen pas de week nadien in de agenda opgenomen worden.</p>
+
         {{ table(rss | list, print_date, print_time, print_date_time) }}
     </body>
 </html>
