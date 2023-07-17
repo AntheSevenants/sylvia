@@ -10,8 +10,6 @@ import sylvia.helpers
 from flask import session, redirect, url_for, render_template, request, send_file, current_app, Response
 from . import main
 
-print("routes are loaded")
-
 @main.route('/')
 def index():
     # TODO remove hardcoding
