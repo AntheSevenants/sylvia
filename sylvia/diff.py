@@ -3,6 +3,7 @@ import json
 import pytz
 import feedparser
 import sylvia.render
+import sylvia.helpers
 
 from datetime import datetime
 from glob import glob
@@ -91,12 +92,11 @@ def save_cache(rss: dict):
     """
 
     # Get the current date and time to generate the filename
-    now = datetime.now(brussels)
-    time_string = now.strftime("%-d %B %Y %H:%M")
+    time_string = sylvia.helpers.get_current_date_time()
 
     # Compose the filename
     cache_dir = os.environ['CACHE_DIR']
-    filename = f"{cache_dir}/{filename}.json"
+    filename = f"{cache_dir}/{time_string}.json"
 
     # Write to disk
     with open(filename, "wt") as writer:
