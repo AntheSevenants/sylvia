@@ -1,19 +1,23 @@
 {% macro table(events, print_date, print_time, print_date_time, mark_changes=False, show_header=True) -%}
     {% if events|count > 0 %}
-    <table>
+    <table style="border-collapse: collapse;">
         {% if show_header %}
         <tr>
-            <th class="darkblue head" colspan="3">Agenda OE Taalkunde</th>
+            <th style="padding-top: 1em; padding-bottom: 1em; background-color: #4472C4;
+            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff; text-align: center;" colspan="3">Agenda OE Taalkunde</th>
         </tr>
         {% endif %}
         <tr>
-            <th class="darkblue textblack" colspan="2">Datum</th>
-            <th class="darkblue">Activiteit</th>
+            <th class="darkblue textblack" style="background-color: #4472C4;
+            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff;" colspan="2">Datum</th>
+            <th class="darkblue" style="background-color: #4472C4;
+            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff;">Activiteit</th>
         </tr>
         {% for event in events %}
         <tr>
-            <th class="darkblue"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png"></a></th>
-            <th class="lightblue date left">
+            <th class="darkblue" style="background-color: #4472C4;
+            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff;"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="/static/calendar.png" style="width: 16px; height: 16px;"></a></th>
+            <th class="lightblue date left" style="background-color: #B4C6E7; color: #111111; padding: 0.25em; border: 1px solid #ffffff; text-align: left;">
                 {% if mark_changes and event["change"] == "changed" and ("time" in event["changes"] or "date" in event["changes"]) %}
                     {% if "time" in event["changes"] and "date" not in event["changes"] %}
                         {{ print_date(event["updated"]) }} <s>{{ event["old_event"]["time"] }}</s> → <span style="color: red;">{{ print_time(event["updated"]) }}</span>
@@ -26,7 +30,7 @@
                     {{ print_date_time(event["updated"]) }} 
                 {% endif %}
             </th>
-            <td class="lightblue">
+            <td class="lightblue" style="background-color: #B4C6E7; color: #111111; padding: 0.25em; border: 1px solid #ffffff;">
                 <a target="_blank" href="{{ event['link'] }}">
                     {% if mark_changes and event["change"] == "changed" and "title" in event["changes"] %}
                         <span style="color: red;">{{ event["title"] }}</span>
