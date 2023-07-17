@@ -54,6 +54,9 @@ def download():
 
     email_filename = f"TODO titel - {sylvia.helpers.get_current_date_time()}.eml"
 
+    # Create a checkpoint
+    sylvia.diff.save_cache(cache_new)
+
     return Response(eml_content,
                     mimetype="text/plain",
                     headers={"Content-disposition": f"attachment; filename={email_filename}"})
