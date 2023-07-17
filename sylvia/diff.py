@@ -9,7 +9,7 @@ from datetime import datetime
 from glob import glob
 from pathlib import Path
 
-brussels = pytz.timezone("Europe/Brussels")
+brussels = pytz.timezone(os.environ["TZ"])
 
 def get_cache_files(cache_path: str):
     """Get a list of all available cache files in a given directory

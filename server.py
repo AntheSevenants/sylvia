@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description='Run sylvia frontend')
 
 args = parser.parse_args()
 
-environment_variables = [ "RSS_URL", "CACHE_DIR", "MAX_CACHE_FILES", "CALENDAR_TITLE", "CALENDAR_NOTICE", "EMAIL_TO" ]
+environment_variables = [ "RSS_URL", "CACHE_DIR", "MAX_CACHE_FILES", "CALENDAR_TITLE", "CALENDAR_NOTICE", "EMAIL_TO", "TZ" ]
 
 for environment_variable in environment_variables:
 	if not environment_variable in os.environ:

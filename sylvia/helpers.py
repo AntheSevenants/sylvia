@@ -4,7 +4,7 @@ from datetime import datetime
 
 import sylvia.diff
 
-brussels = pytz.timezone("Europe/Brussels")
+brussels = pytz.timezone(os.environ["TZ"])
 
 def get_current_date_time():
     """Get the current date and time as YYYY-MM-DD HH:MM
