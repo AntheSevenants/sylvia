@@ -57,6 +57,17 @@ def download():
     # Create a checkpoint
     sylvia.diff.save_cache(cache_new)
 
+    # Remove old checkpoints
+    cache_files = sylvia.diff.get_cache_files(os.environ["CACHE_DIR"])
+    max_cache_files = int(os.environ["MAX_CACHE_FILES"])
+    if len(cache_files) > max_cache_files and max_cache_files != 0:
+        print("Found old cache files.")
+        to_remove_files = cache_files[max_cache_files:]
+        for file in to_remove_files:
+            filename = f"{os.environ['CACHE_DIR']}/{file}.json"
+            print("Removing", filename)
+            os.remove(filename)
+
     return Response(eml_content,
                     mimetype="text/plain",
                     headers={"Content-disposition": f"attachment; filename={email_filename}"})
