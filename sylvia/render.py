@@ -1,3 +1,5 @@
+import os
+
 import sylvia.diff
 
 from datetime import datetime
@@ -47,4 +49,5 @@ def as_html(rss):
     return template.render(rss=rss,
                            print_date=print_date,
                            print_time=print_time,
-                           print_date_time=print_date_time)
+                           print_date_time=print_date_time,
+                           calendar_title=os.environ["CALENDAR_TITLE"])

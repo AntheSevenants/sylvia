@@ -4,18 +4,18 @@
  
 <p><u>Toegevoegd/Added</u></p>
 
-{{ table(rss | selectattr("change", "equalto", "added") | list, print_date, print_time, print_date_time, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "added") | list, print_date, print_time, print_date_time) }}
         
 <p><u>Gewijzigd/Modified</u></p>
 
-{{ table(rss | selectattr("change", "equalto", "changed") | list, print_date, print_time, print_date_time, mark_changes=True, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "changed") | list, print_date, print_time, print_date_time, mark_changes=True) }}
 
 <p><u>Geannuleerd/Cancelled</u></p>
 
-{{ table(rss | selectattr("change", "equalto", "removed") | list, print_date, print_time, print_date_time, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "removed") | list, print_date, print_time, print_date_time) }}
 
 <p style="color: #00B050; font-style: italic;"><b>!</b> De OE-agenda wordt in principe op maandag uitgestuurd. Gelieve activiteiten die men in de agenda wil vermeld zien telkens uiterlijk zondagavond in te dienen bij XXX. Activiteiten die XXX later bereiken zullen pas de week nadien in de agenda opgenomen worden.</p>
 
-{{ table(rss | list, print_date, print_time, print_date_time, mark_changes=True) }}
+{{ table(rss | list, print_date, print_time, print_date_time, mark_changes=True, calendar_title=calendar_title) }}
 
 <p>Generated with <a href="https://github.com/AntheSevenants/sylvia">sylvia</a>.</p>

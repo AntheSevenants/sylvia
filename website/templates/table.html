@@ -1,12 +1,12 @@
 {% from 'calendar_image.html' import calendar_image %}
 
-{% macro table(events, print_date, print_time, print_date_time, mark_changes=False, show_header=True) -%}
+{% macro table(events, print_date, print_time, print_date_time, mark_changes=False, calendar_title=False) -%}
     {% if events|count > 0 %}
     <table style="border-collapse: collapse;">
-        {% if show_header %}
+        {% if calendar_title %}
         <tr>
             <th style="padding-top: 1em; padding-bottom: 1em; background-color: #4472C4;
-            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff; text-align: center;" colspan="3">Agenda OE Taalkunde</th>
+            color: #ffffff; padding: 0.25em; border: 1px solid #ffffff; text-align: center;" colspan="3">{{ calendar_title }}</th>
         </tr>
         {% endif %}
         <tr>
