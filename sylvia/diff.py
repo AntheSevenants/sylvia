@@ -67,6 +67,21 @@ def get_cache(rss: dict):
 
     return cache
 
+def get_cache_new():
+    """Get the current RSS feed XML as a cache dict
+
+    Returns:
+        dict: the cache for current RSS state
+    """
+
+    # Retrieve the RSS feed
+    rss = feedparser.parse(os.environ["RSS_URL"])
+    rss = rss["entries"]
+    # Turn it into "new" cache
+    cache_new = sylvia.diff.get_cache(rss)
+
+    return cache_new
+
 def save_cache(rss: dict):
     """Save a cache dict to disk with the current date as the filename
 
