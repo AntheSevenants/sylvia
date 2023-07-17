@@ -12,8 +12,7 @@ from . import main
 
 @main.route('/')
 def index():
-    # TODO remove hardcoding
-    cache_files = sylvia.diff.get_cache_files("cache/")
+    cache_files = sylvia.diff.get_cache_files(os.environ["CACHE_DIR"])
 
     return render_template('index.html', cache_files=cache_files)
 
