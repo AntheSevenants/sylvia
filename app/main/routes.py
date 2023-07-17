@@ -48,7 +48,7 @@ def download():
     calendar_html = sylvia.render.calendar(rss, cache_new, cache_old)
     current_date = sylvia.helpers.get_current_date()
 
-    eml_content = sylvia.email.create("TODO@TODO.com", f"{os.environ['CALENDAR_TITLE']} - {current_date}", calendar_html)
+    eml_content = sylvia.email.create(os.environ['EMAIL_TO'], f"{os.environ['CALENDAR_TITLE']} - {current_date}", calendar_html)
 
     email_filename = f"{os.environ['CALENDAR_TITLE']} - {sylvia.helpers.get_current_date_time()}.eml"
 
