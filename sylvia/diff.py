@@ -27,6 +27,15 @@ def get_cache_files(cache_path: str):
     return stems
 
 def get_cache_from_path(cache_file: str):
+    """Get the contents of a cache file from its filename
+
+    Args:
+        cache_file (str): the cache file filename to get the contents from
+
+    Returns:
+        dict: cache contents
+    """
+
     if cache_file == "none":
         cache_old = None
     else:
