@@ -5,6 +5,7 @@ import sylvia.error
 import sylvia.diff
 import sylvia.render
 import sylvia.email
+import sylvia.helpers
 
 from flask import session, redirect, url_for, render_template, request, send_file, current_app, Response
 from . import main
@@ -51,8 +52,8 @@ def download():
 
     eml_content = sylvia.email.create("TODO@TODO.com", "Agenda OE Taalkunde TODO", calendar_html)
 
-    print(eml_content)
+    email_filename = f"TODO titel - {sylvia.helpers.get_current_date_time()}.eml"
 
     return Response(eml_content,
                     mimetype="text/plain",
-                    headers={"Content-disposition": "attachment; filename=email.eml"})
+                    headers={"Content-disposition": f"attachment; filename={email_filename}"})
