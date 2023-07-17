@@ -12,6 +12,12 @@ def get_current_date_time():
 
     return time_string
 
+def get_current_date():
+    now = datetime.now(brussels)
+    time_string = now.strftime(f"%Y-%m-%d")
+
+    return time_string
+
 def clean_cache_files():
     # Remove old checkpoints
     cache_files = sylvia.diff.get_cache_files(os.environ["CACHE_DIR"])
