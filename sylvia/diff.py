@@ -1,6 +1,7 @@
 import os
 import json
 import pytz
+import feedparser
 import sylvia.render
 
 from datetime import datetime
@@ -65,6 +66,25 @@ def get_cache(rss: dict):
         }
 
     return cache
+
+def save_cache(rss: dict):
+    """Save a cache dict to disk with the current date as the filename
+
+    Args:
+        rss (dict): the cache for RSS
+    """
+
+    # Get the current date and time to generate the filename
+    now = datetime.now(brussels)
+    time_string = now.strftime("%-d %B %Y %H:%M")
+
+    # Compose the filename
+    cache_dir = os.environ['CACHE_DIR']
+    filename = f"{cache_dir}/{filename}.json"
+
+    # Write to disk
+    with open(filename, "wt") as writer:
+        writer.write(json.dumps(rss))
 
 def get_updates(old_cache: dict, new_cache: dict):
     """Get a dictionary of changes to the calendar since a previous point in time
