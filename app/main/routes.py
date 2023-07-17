@@ -49,7 +49,7 @@ def download():
 
     eml_content = sylvia.email.create("TODO@TODO.com", "Agenda OE Taalkunde TODO", calendar_html)
 
-    email_filename = f"TODO titel - {sylvia.helpers.get_current_date_time()}.eml"
+    email_filename = f"{os.environ['CALENDAR_TITLE']} - {sylvia.helpers.get_current_date_time()}.eml"
 
     # Create a checkpoint
     sylvia.diff.save_cache(cache_new)
