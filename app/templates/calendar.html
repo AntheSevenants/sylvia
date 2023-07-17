@@ -2,6 +2,11 @@
 {% block title %}Calendar generated{% endblock %}
 {% block head %}
     {{ super() }}
+    <style>
+        table + p, p + p {
+            margin-top: 1rem;
+        }
+    </style>
 {% endblock %}
 {% block content %}
     <h1>Calendar generated</h1>
