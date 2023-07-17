@@ -1,72 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Agenda OE Taalkunde</title>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Open Sans', sans-serif;
-            }
+{% from 'table.html' import table %}
 
-            table {
-                border-collapse: collapse;
-            }
-
-            .left {
-                text-align: left;
-            }
-
-            th.head {
-                padding-top: 1em;
-                padding-bottom: 1em;
-            }
-
-            th, td {
-                padding: 0.25em;
-                border: 1px solid #ffffff;
-            }
-
-            .cal {
-                width: 16px;
-                height: 16px;
-            }
-
-            .darkblue {
-                background-color: #4472C4;
-                color: #ffffff;
-            }
-
-            .darkblue .textblack {
-                color: #111111;
-            }
-
-            .lightblue {
-                background-color: #B4C6E7;
-                color: #111111;
-            }
-        </style>
-    </head>
-    <body>
-        {% from 'table.html' import table %}
-
-        <p><strong>Wijzigingen van de week</strong></p> 
+<p><strong>Wijzigingen van de week</strong></p> 
  
-        <p><u>Toegevoegd/Added</u></p>
+<p><u>Toegevoegd/Added</u></p>
 
-        {{ table(rss | selectattr("change", "equalto", "added") | list, print_date, print_time, print_date_time, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "added") | list, print_date, print_time, print_date_time, show_header=False) }}
         
-        <p><u>Gewijzigd/Modified</u></p>
+<p><u>Gewijzigd/Modified</u></p>
 
-        {{ table(rss | selectattr("change", "equalto", "changed") | list, print_date, print_time, print_date_time, mark_changes=True, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "changed") | list, print_date, print_time, print_date_time, mark_changes=True, show_header=False) }}
 
-        <p><u>Geannuleerd/Cancelled</u></p>
+<p><u>Geannuleerd/Cancelled</u></p>
 
-        {{ table(rss | selectattr("change", "equalto", "removed") | list, print_date, print_time, print_date_time, show_header=False) }}
+{{ table(rss | selectattr("change", "equalto", "removed") | list, print_date, print_time, print_date_time, show_header=False) }}
 
-        <p style="color: #00B050; font-style: italic;"><b>!</b> De OE-agenda wordt in principe op maandag uitgestuurd. Gelieve activiteiten die men in de agenda wil vermeld zien telkens uiterlijk zondagavond in te dienen bij XXX. Activiteiten die XXX later bereiken zullen pas de week nadien in de agenda opgenomen worden.</p>
+<p style="color: #00B050; font-style: italic;"><b>!</b> De OE-agenda wordt in principe op maandag uitgestuurd. Gelieve activiteiten die men in de agenda wil vermeld zien telkens uiterlijk zondagavond in te dienen bij XXX. Activiteiten die XXX later bereiken zullen pas de week nadien in de agenda opgenomen worden.</p>
 
-        {{ table(rss | list, print_date, print_time, print_date_time, mark_changes=True) }}
+{{ table(rss | list, print_date, print_time, print_date_time, mark_changes=True) }}
 
-        <p>Generated with <a href="https://github.com/AntheSevenants/sylvia">sylvia</a>.</p>
-    </body>
-</html>
+<p>Generated with <a href="https://github.com/AntheSevenants/sylvia">sylvia</a>.</p>
