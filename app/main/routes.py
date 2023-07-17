@@ -12,12 +12,24 @@ from . import main
 
 @main.route('/')
 def index():
+    """Renders the sylvia landing page
+
+    Returns:
+        str: HTML output
+    """
+
     cache_files = sylvia.diff.get_cache_files(os.environ["CACHE_DIR"])
 
     return render_template('index.html', cache_files=cache_files)
 
 @main.route('/calendar', methods = ["GET", "POST"])
 def calendar():
+    """Generates the calendar preview (POST only)
+
+    Returns:
+        str: HTML output
+    """
+
     if request.method != "POST":
         return sylvia.error.generate("This endpoint only accepts POST requests.")
     
@@ -35,6 +47,12 @@ def calendar():
 
 @main.route('/download', methods = ["GET", "POST"])
 def download():
+    """Downloads the calendar with selected settings, saves a cache and removes old caches
+
+    Returns:
+        Response: Flask response which forces the browser to download the calendar EML
+    """
+
     if request.method != "POST":
         return sylvia.error.generate("This endpoint only accepts POST requests.")
     
