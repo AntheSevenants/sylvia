@@ -28,8 +28,9 @@ def calendar():
     
     cache_file = request.form["changes_source"]
     cache_old = sylvia.diff.get_cache_from_path(cache_file)
+    rss, cache_new = sylvia.diff.get_rss_new()
 
-    calendar_html = sylvia.render.calendar(cache_old)
+    calendar_html = sylvia.render.calendar(rss, cache_new, cache_old)
 
     return render_template('calendar.html', calendar_html=calendar_html, cache_file=cache_file)
 
@@ -44,8 +45,9 @@ def download():
     
     cache_file = request.form["changes_source"]
     cache_old = sylvia.diff.get_cache_from_path(cache_file)
+    rss, cache_new = sylvia.diff.get_rss_new()
 
-    calendar_html = sylvia.render.calendar(cache_old)
+    calendar_html = sylvia.render.calendar(rss, cache_new, cache_old)
 
     eml_content = sylvia.email.create("TODO@TODO.com", "Agenda OE Taalkunde TODO", calendar_html)
 
