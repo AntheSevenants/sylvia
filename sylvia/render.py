@@ -50,4 +50,5 @@ def as_html(rss):
                            print_date=print_date,
                            print_time=print_time,
                            print_date_time=print_date_time,
-                           calendar_title=os.environ["CALENDAR_TITLE"])
+                           calendar_title=os.environ["CALENDAR_TITLE"],
+                           calendar_notice=os.environ["CALENDAR_NOTICE"])
