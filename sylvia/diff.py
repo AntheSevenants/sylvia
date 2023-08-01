@@ -46,9 +46,23 @@ def get_cache_from_path(cache_file: str):
         if not os.path.exists(cache_path):
             return sylvia.error.generate("Invalid cache file.")
     
-        # Open the old cache
-        with open(cache_path, "rt") as reader:
-            cache_old = json.loads(reader.read())
+        cache_old = get_cache_from_path_full(cache_path)
+
+    return cache_old
+
+def get_cache_from_path_full(cache_path: str):
+    """Get the contents of a cache file from its full path
+
+    Args:
+        cache_path (str): the cache file's full path
+
+    Returns:
+        dict: cache contents
+    """
+
+    # Open the old cache
+    with open(cache_path, "rt") as reader:
+        cache_old = json.loads(reader.read())
 
     return cache_old
 
