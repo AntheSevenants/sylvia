@@ -223,7 +223,7 @@ def join(rss: dict, changed_events: dict):
         changed_events (dict): a dictionary which dictates which elements have changed
 
     Returns:
-        dict: RSS enriched with change information
+        list[dict]: RSS enriched with change information
     """
 
     for event in rss:
