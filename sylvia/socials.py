@@ -44,4 +44,6 @@ def compose(rss_rich, medium="twitter"):
 
         body_text = f"{body_text}{event_title} {event['link']}"
 
+        messages.append(body_text)
+
     return messages
