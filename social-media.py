@@ -23,6 +23,7 @@ changed_events = sylvia.diff.get_updates(cache_old, cache_new)
 rss_rich = sylvia.diff.join(rss, changed_events)
 
 # Time for character management :-) You're probably not paying for Twitter (X?) Blue
+medium = "twitter"
 TWEET_LENGTH = 280
 LINK_LENGTH = 23 + 1 # as per https://developer.twitter.com/en/docs/counting-characters
 
@@ -45,7 +46,7 @@ for event in rss_rich:
     chars_left = TWEET_LENGTH - len(body_text)
     event_title = event["title"]
 
-    if chars_left < len(event["title"]):
+    if chars_left < len(event["title"]) and medium == "twitter":
         print("Big problems!", event["title"])
         # We truncate the title to the number of chars left, minus one for the …
         event_title = event["title"][:chars_left - 1] + "…"
