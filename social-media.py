@@ -46,6 +46,7 @@ for event in rss_rich:
     chars_left = TWEET_LENGTH - len(body_text)
     event_title = event["title"]
 
+    # We only truncate if the social medium is Twitter
     if chars_left < len(event["title"]) and medium == "twitter":
         print("Big problems!", event["title"])
         # We truncate the title to the number of chars left, minus one for the …
