@@ -23,12 +23,12 @@ def compose(rss_rich, medium="twitter"):
 
         body_text = ""
         if event["change"] == "added":
-            body_text = f"🆕 New event! "
+            body_text = f"🆕 New event!\n"
         elif event["change"] == "changed":
             if "date" in event["changes"]:
-                body_text = f"📅⚠️ Date change! "
+                body_text = f"📅⚠️ Date change!\n"
             elif "time" in event["changes"]:
-                body_text = f"⏰⚠️ Time change! "
+                body_text = f"⏰⚠️ Time change!\n"
             else:
                 # Other changes do not matter
                 continue
