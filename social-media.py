@@ -32,6 +32,7 @@ api = tweepy.Client(bearer_token=os.environ["TW_BEARER_TOKEN"],
                     consumer_secret=os.environ["TW_CONSUMER_SECRET"],
                     access_token=os.environ["TW_ACCESS_TOKEN"],
                     access_token_secret=os.environ["TW_ACCESS_TOKEN_SECRET"])
-api.create_tweet(text="Deze tweet werd verzonden met de Twitter API!")
 
-#print(posts)
+for post in posts:
+    print("Sending tweet:", post)
+    api.create_tweet(text=post)
