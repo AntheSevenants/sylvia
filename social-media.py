@@ -1,5 +1,7 @@
+import os
 import argparse
 import json
+import tweepy
 import sylvia.render
 import sylvia.diff
 import sylvia.socials
@@ -25,4 +27,11 @@ rss_rich = sylvia.diff.join(rss, changed_events)
 
 posts = sylvia.socials.compose(rss_rich)
 
-print(posts)
+api = tweepy.Client(bearer_token=os.environ["TW_BEARER_TOKEN"],
+                    consumer_key=os.environ["TW_CONSUMER_KEY"],
+                    consumer_secret=os.environ["TW_CONSUMER_SECRET"],
+                    access_token=os.environ["TW_ACCESS_TOKEN"],
+                    access_token_secret=os.environ["TW_ACCESS_TOKEN_SECRET"])
+api.create_tweet(text="Deze tweet werd verzonden met de Twitter API!")
+
+#print(posts)
