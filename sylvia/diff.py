@@ -4,6 +4,7 @@ import pytz
 import feedparser
 import sylvia.render
 import sylvia.helpers
+import sylvia.error
 
 from datetime import datetime
 from glob import glob
