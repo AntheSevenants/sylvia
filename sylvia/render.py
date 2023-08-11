@@ -66,7 +66,11 @@ def print_date_time(input_datetime):
 
     event_timestamp = date_from_string(input_datetime)
 
-    return event_timestamp.strftime("%-d %B %Y %H:%M")
+    # If there is just a general time, do not display 12 AM
+    if event_timestamp.hour == 0 and event_timestamp.minute == 0:
+        return event_timestamp.strftime("%-d %B %Y")
+    else:
+        return event_timestamp.strftime("%-d %B %Y %H:%M")
 
 def calendar(rss, cache_new, cache_old=None):
     """Render the calendar as HTML
