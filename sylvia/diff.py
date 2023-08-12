@@ -5,6 +5,7 @@ import feedparser
 import sylvia.render
 import sylvia.helpers
 import sylvia.error
+import sylvia.ics
 
 from datetime import datetime
 from glob import glob
@@ -82,11 +83,17 @@ def get_cache(rss: dict):
     for entry in rss:
         key = entry["link"]
 
+        ics_link = f"{entry['link']}/ics_view"
+        event_begin, event_end = sylvia.ics.get_event_times(ics_link)
+
         cache[key] = {
             "title": entry["title"],
-            "date_time": sylvia.render.print_date_time(entry["updated"]),
-            "date": sylvia.render.print_date(entry["updated"]),
-            "time": sylvia.render.print_time(entry["updated"]),
+            "date_time": sylvia.render.print_date_time(event_begin, no_convert=True),
+            "date": sylvia.render.print_date(event_begin, no_convert=True),
+            "time": sylvia.render.print_time(event_begin, no_convert=True),
+            "end_date_time": sylvia.render.print_date_time(event_end, no_convert=True),
+            "end_date": sylvia.render.print_date(event_begin, no_convert=True),
+            "end_time": sylvia.render.print_time(event_begin, no_convert=True),
             "description": entry["description"]
         }
 
