@@ -26,45 +26,57 @@ def date_from_string(input_datetime):
     input_datetime = input_datetime.split("+")[0]
     return datetime.strptime(input_datetime, f"%Y-%m-%dT%H:%M:%S")
 
-def print_date(input_datetime):
+def print_date(input_datetime, no_convert=False):
     """Print the current date from a datetime object as DD Month YYYY
 
     Args:
         input_datetime (datetime): input datetime object
-
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
+        
     Returns:
         str: datetime object rendered as DD Month YYYY
     """
 
-    event_timestamp = date_from_string(input_datetime)
+    if not no_convert:
+        event_timestamp = date_from_string(input_datetime)
+    else:
+        event_timestamp = input_datetime
 
     return event_timestamp.strftime("%-d %B %Y")
 
-def print_time(input_datetime):
+def print_time(input_datetime, no_convert=False):
     """Print the current time from a datetime object as HH:MM
 
     Args:
         input_datetime (datetime): input datetime object
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
 
     Returns:
         str: datetime object rendered as HH:MM
     """
 
-    event_timestamp = date_from_string(input_datetime)
+    if not no_convert:
+        event_timestamp = date_from_string(input_datetime)
+    else:
+        event_timestamp = input_datetime
 
     return event_timestamp.strftime("%H:%M")
 
-def print_date_time(input_datetime):
+def print_date_time(input_datetime, no_convert=False):
     """Print the current date and time from a datetime object as DD Month YYYY HH:MM
 
     Args:
         input_datetime (datetime): input datetime object
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
 
     Returns:
         str: datetime object rendered as DD Month YYYY HH:MM
     """
 
-    event_timestamp = date_from_string(input_datetime)
+    if not no_convert:
+        event_timestamp = date_from_string(input_datetime)
+    else:
+        event_timestamp = input_datetime
 
     # If there is just a general time, do not display 12 AM
     if event_timestamp.hour == 0 and event_timestamp.minute == 0:
