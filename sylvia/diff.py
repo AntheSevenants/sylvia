@@ -245,3 +245,22 @@ def join(rss: dict, changed_events: dict):
                 event["old_event"] = changed_events[key]["old_event"]
 
     return rss
+
+def attach_date_time(rss: dict):
+    """Attach begin and end times from the given ICS calendars
+
+    Args:
+        rss (dict): the RSS feed to attach date time to
+
+    Returns:
+        list[dict]: RSS enriched with begin and end times
+    """
+
+    for event in rss:
+        ics_link = f"{event['link']}/ics_view"
+        event_begin, event_end = sylvia.ics.get_event_times(ics_link)
+
+        event["begin_time"] = event_begin
+        event["end_time"] = event_end
+
+    return rss
