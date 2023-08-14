@@ -26,7 +26,7 @@ def date_from_string(input_datetime):
     input_datetime = input_datetime.split("+")[0]
     return datetime.strptime(input_datetime, f"%Y-%m-%dT%H:%M:%S")
 
-def print_date(input_datetime, no_convert=False):
+def print_date(input_datetime, no_convert=True):
     """Print the current date from a datetime object as DD Month YYYY
 
     Args:
@@ -44,7 +44,7 @@ def print_date(input_datetime, no_convert=False):
 
     return event_timestamp.strftime("%-d %B %Y")
 
-def print_time(input_datetime, no_convert=False):
+def print_time(input_datetime, no_convert=True):
     """Print the current time from a datetime object as HH:MM
 
     Args:
@@ -62,7 +62,7 @@ def print_time(input_datetime, no_convert=False):
 
     return event_timestamp.strftime("%H:%M")
 
-def print_date_time(input_datetime, no_convert=False):
+def print_date_time(input_datetime, no_convert=True):
     """Print the current date and time from a datetime object as DD Month YYYY HH:MM
 
     Args:
