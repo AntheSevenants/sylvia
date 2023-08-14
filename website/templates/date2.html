@@ -1,0 +1,81 @@
+{% macro datetime(event, print_date, print_time, print_date_time, mark_changes) -%}
+    {# Single day, date only, not time #}
+    {% if (print_date(event["begin_time"]) == print_date(event["end_time"])) and (print_time(event["begin_time"]) == "00:00") %}
+        {% if mark_changes and event["change"] == "changed" and "date" in event["changes"] %}
+            <s>{{ event["old_event"]["date"] }}</s><br>
+            ↓<br>
+            <span style="color: red;">
+                {{ print_date(event["begin_time"]) }}
+            </span>
+        {% else %}
+            {{ print_date(event["begin_time"]) }}
+        {% endif %}
+    {# Single day, with date and time #}
+    {% elif (print_date(event["begin_time"]) == print_date(event["end_time"])) and (print_time(event["begin_time"]) != "00:00") %}
+        {% if mark_changes and event["change"] == "changed" and "date" in event["changes"] %}
+            <s>{{ event["old_event"]["date"] }}
+            <br>
+            {{event["old_event"]["time"] }} - {{ event["old_event"]["end_time"]}}</s> →
+            <br>
+            <span style="color: red;">
+                {{ single_date_time(event, print_date, print_time) }}
+            </span>
+        {% elif mark_changes and event["change"] == "changed" and "time" in event["changes"] %}
+             {{ print_date(event["begin_time"]) }}
+             <br>
+             {# If time was previously undefined, do not display change source #}
+             {% if event["old_event"]["time"] != "00:00" %}
+                <s>{{event["old_event"]["time"] }} - {{ event["old_event"]["end_time"]}}</s> →
+                <br>
+             {% endif %}
+             <span style="color: red;">
+                 {{ print_time(event["begin_time"]) }} - {{ print_time(event["end_time"]) }}
+             </span>
+        {% else %}
+            {{ single_date_time(event, print_date, print_time) }}
+        {% endif %}
+    {# Multiple days #}
+    {% elif print_date(event["begin_time"]) != print_date(event["end_time"]) %}
+        {# Date only #}
+        {% if print_time(event["begin_time"]) == "00:00" %}
+            {% if mark_changes and event["change"] == "changed" and "date" in event["changes"] %}
+                <s>{{ event["old_event"]["date"] }} -<br>{{ event["old_event"]["end_date"] }}</s> →
+                <br>
+                <span style="color: red;">
+                    {{ multi_date_only(event, print_date) }}
+                </span>
+            {% else %}
+                {{ multi_date_only(event, print_date) }}
+            {% endif %}
+        {# Date and time #}
+        {% else %}
+            {% if mark_changes and event["change"] == "changed" and ("date" in event["changes"] or "time" in event["changes"]) %}
+                <s>{{ event["old_event"]["date_time"] }} -<br>{{ event["old_event"]["date_time"] }}</s> →
+                <br>
+                <span style="color: red;">
+                    {{ multi_date_time(event, print_date) }}
+                </span>
+            {% else %}
+                {{ multi_date_time(event, print_date) }}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        ???
+    {% endif %}
+{%- endmacro %}
+
+{% macro single_date_time(event, print_date, print_time) -%}
+    {{ print_date(event["begin_time"]) }}
+    <br>
+    {{ print_time(event["begin_time"]) }} - {{ print_time(event["end_time"]) }}  
+{%- endmacro %}
+
+{% macro multi_date_only(event, print_date) -%}
+    {{ print_date(event["begin_time"]) }} - <br>
+    {{ print_date(event["end_time"]) }}
+{%- endmacro %}
+
+{% macro multi_date_time(event, print_date_time) -%}
+    {{ print_date_time(event["begin_time"]) }} -<br>
+    {{ print_date_time(event["end_time"]) }}
+{%- endmacro %}

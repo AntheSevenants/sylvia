@@ -1,8 +1,9 @@
 {% from 'calendar_image.html' import calendar_image %}
+{% from 'date2.html' import datetime %}
 
 {% macro table(events, print_date, print_time, print_date_time, mark_changes=False, calendar_title=False) -%}
     {% if events|count > 0 %}
-    <table style="border-collapse: collapse;">
+    <table style="border-collapse: collapse; width: 100%;">
         {% if calendar_title %}
         <tr>
             <th style="padding-top: 1em; padding-bottom: 1em; background-color: #4472C4;
@@ -19,18 +20,8 @@
         <tr>
             <th class="darkblue" style="background-color: #4472C4;
             color: #ffffff; padding: 0.25em; border: 1px solid #ffffff;"><a href="{{ event['link'] }}/ics_view"><img class="cal" src="{{ calendar_image() }}" width="16" height="16"></a></th>
-            <th class="lightblue date left" style="background-color: #B4C6E7; color: #111111; padding: 0.25em; border: 1px solid #ffffff; text-align: left;">
-                {% if mark_changes and event["change"] == "changed" and ("time" in event["changes"] or "date" in event["changes"]) %}
-                    {% if "time" in event["changes"] and "date" not in event["changes"] %}
-                        {{ print_date(event["updated"]) }} <s>{{ event["old_event"]["time"] }}</s> → <span style="color: red;">{{ print_time(event["updated"]) }}</span>
-                    {% else %}
-                        <s>{{ event["old_event"]["date_time"] }}</s><br>
-                        ↓<br>
-                        {{ print_date_time(event["updated"]) }} 
-                    {% endif %}
-                {% else %}
-                    {{ print_date_time(event["updated"]) }} 
-                {% endif %}
+            <th class="lightblue date left" style="background-color: #B4C6E7; color: #111111; padding: 0.25em; border: 1px solid #ffffff; text-align: left; width: 12rem;">
+                {{ datetime(event, print_date, print_time, print_date_time, mark_changes) }}
             </th>
             <td class="lightblue" style="background-color: #B4C6E7; color: #111111; padding: 0.25em; border: 1px solid #ffffff;">
                 <a target="_blank" href="{{ event['link'] }}">
