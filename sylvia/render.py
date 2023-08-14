@@ -107,7 +107,7 @@ def calendar(rss, cache_new, cache_old=None):
         # Add date and time information to all events from ICS
         rss = sylvia.diff.attach_date_time(rss)
 
-    calendar_html = sylvia.render.as_html(rss)
+    calendar_html = as_html(rss)
 
     return calendar_html
 
