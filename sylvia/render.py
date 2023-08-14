@@ -31,7 +31,7 @@ def print_date(input_datetime, no_convert=True):
 
     Args:
         input_datetime (datetime): input datetime object
-        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to True.
         
     Returns:
         str: datetime object rendered as DD Month YYYY
@@ -49,7 +49,7 @@ def print_time(input_datetime, no_convert=True):
 
     Args:
         input_datetime (datetime): input datetime object
-        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to True.
 
     Returns:
         str: datetime object rendered as HH:MM
@@ -67,7 +67,7 @@ def print_date_time(input_datetime, no_convert=True):
 
     Args:
         input_datetime (datetime): input datetime object
-        no_convert (bool, optional): whether the input is already a datetime object. Defaults to False.
+        no_convert (bool, optional): whether the input is already a datetime object. Defaults to True.
 
     Returns:
         str: datetime object rendered as DD Month YYYY HH:MM
