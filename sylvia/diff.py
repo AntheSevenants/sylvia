@@ -91,7 +91,6 @@ def get_cache(rss: dict):
             "date_time": sylvia.render.print_date_time(event_begin, no_convert=True),
             "date": sylvia.render.print_date(event_begin, no_convert=True),
             "time": sylvia.render.print_time(event_begin, no_convert=True),
-            # I honestly think this isn't really necessary, so TODO for removal
             "end_date_time": sylvia.render.print_date_time(event_end, no_convert=True),
             "end_date": sylvia.render.print_date(event_begin, no_convert=True),
             "end_time": sylvia.render.print_time(event_begin, no_convert=True),
