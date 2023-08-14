@@ -104,6 +104,9 @@ def calendar(rss, cache_new, cache_old=None):
         # Join the changed events output with the RSS output
         rss = sylvia.diff.join(rss, changed_events)
 
+        # Add date and time information to all events from ICS
+        rss = sylvia.diff.attach_date_time(rss)
+
     calendar_html = sylvia.render.as_html(rss)
 
     return calendar_html
