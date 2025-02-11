@@ -124,7 +124,7 @@ def save_cache(rss: dict):
     """
 
     # Get the current date and time to generate the filename
-    time_string = sylvia.helpers.get_current_date_time().replace(":", "-")
+    time_string = sylvia.helpers.get_current_date_time().replace(":", "h")
 
     # Compose the filename
     cache_dir = resources['CACHE_DIR']
