@@ -124,11 +124,11 @@ def save_cache(rss: dict):
     """
 
     # Get the current date and time to generate the filename
-    time_string = sylvia.helpers.get_current_date_time()
+    time_string = sylvia.helpers.get_current_date_time().replace(":", "-")
 
     # Compose the filename
     cache_dir = resources['CACHE_DIR']
-    filename = f"{cache_dir}/{time_string}.json"
+    filename = os.path.join(cache_dir, f"{time_string}.json")
 
     # Write to disk
     with open(filename, "wt") as writer:
