@@ -9,6 +9,7 @@ import sylvia.helpers
 
 from flask import session, redirect, url_for, render_template, request, send_file, current_app, Response
 from . import main
+from sylvia.constants import resources
 
 @main.route('/')
 def index():
@@ -18,7 +19,7 @@ def index():
         str: HTML output
     """
 
-    cache_files = sylvia.diff.get_cache_files(os.environ["CACHE_DIR"])
+    cache_files = sylvia.diff.get_cache_files(resources["CACHE_DIR"])
 
     return render_template('index.html', cache_files=cache_files)
 
@@ -66,9 +67,9 @@ def download():
     calendar_html = sylvia.render.calendar(rss, cache_new, cache_old)
     current_date = sylvia.helpers.get_current_date()
 
-    eml_content = sylvia.email.create(os.environ['EMAIL_TO'], f"{os.environ['CALENDAR_TITLE']} - {current_date}", calendar_html)
+    eml_content = sylvia.email.create(resources['EMAIL_TO'], f"{resources['CALENDAR_TITLE']} - {current_date}", calendar_html)
 
-    email_filename = f"{os.environ['CALENDAR_TITLE']} - {sylvia.helpers.get_current_date_time()}.eml"
+    email_filename = f"{resources['CALENDAR_TITLE']} - {sylvia.helpers.get_current_date_time()}.eml"
 
     # Create a checkpoint
     sylvia.diff.save_cache(cache_new)
