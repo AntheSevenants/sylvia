@@ -10,8 +10,9 @@ import sylvia.ics
 from datetime import datetime
 from glob import glob
 from pathlib import Path
+from sylvia.constants import resources
 
-brussels = pytz.timezone(os.environ["TZ"])
+brussels = pytz.timezone(resources["TZ"])
 
 def get_cache_files(cache_path: str):
     """Get a list of all available cache files in a given directory
@@ -42,7 +43,7 @@ def get_cache_from_path(cache_file: str):
         cache_old = None
     else:
         cache_file = f"{cache_file}.json"
-        cache_dir = os.environ['CACHE_DIR']
+        cache_dir = resources['CACHE_DIR']
         cache_path = f"{cache_dir}/{cache_file}"
 
         if not os.path.exists(cache_path):
@@ -108,7 +109,7 @@ def get_rss_new():
     """
 
     # Retrieve the RSS feed
-    rss = feedparser.parse(os.environ["RSS_URL"])
+    rss = feedparser.parse(resources["RSS_URL"])
     rss = rss["entries"]
     # Turn it into "new" cache
     cache_new = sylvia.diff.get_cache(rss)
@@ -126,7 +127,7 @@ def save_cache(rss: dict):
     time_string = sylvia.helpers.get_current_date_time()
 
     # Compose the filename
-    cache_dir = os.environ['CACHE_DIR']
+    cache_dir = resources['CACHE_DIR']
     filename = f"{cache_dir}/{time_string}.json"
 
     # Write to disk

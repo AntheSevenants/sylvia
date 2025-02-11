@@ -2,6 +2,8 @@ import os
 import argparse
 from app import create_app
 
+from sylvia.constants import resources
+
 parser = argparse.ArgumentParser(description='Run sylvia frontend')
 parser.add_argument('-debug', '--debug', nargs='?', type=bool, default=False, help='output file, in JSON format')
 
@@ -12,9 +14,8 @@ debug = args.debug
 environment_variables = [ "RSS_URL", "CACHE_DIR", "MAX_CACHE_FILES", "CALENDAR_TITLE", "CALENDAR_NOTICE", "EMAIL_TO", "TZ" ]
 
 for environment_variable in environment_variables:
-	if not environment_variable in os.environ:
-		raise Exception(f"Environment variable '{environment_variable}' missing")
-
+	if not environment_variable in resources:
+		raise Exception(f"Parameter '{environment_variable}' missing from resources.json")
 
 app = create_app(debug=debug)
 

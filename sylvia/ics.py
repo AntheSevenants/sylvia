@@ -1,9 +1,10 @@
 import os
 import pytz
 import urllib.request
+from sylvia.constants import resources
 from ics import Calendar
 
-brussels = pytz.timezone(os.environ["TZ"])
+brussels = pytz.timezone(resources["TZ"])
 
 def get_event_times(url):
     ical = urllib.request.urlopen(url).read().decode("UTF-8")

@@ -2,6 +2,7 @@ import os
 
 import sylvia.diff
 
+from sylvia.constants import resources
 from datetime import datetime
 
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -125,5 +126,5 @@ def as_html(rss):
                            print_date=print_date,
                            print_time=print_time,
                            print_date_time=print_date_time,
-                           calendar_title=os.environ["CALENDAR_TITLE"],
-                           calendar_notice=os.environ["CALENDAR_NOTICE"])
+                           calendar_title=resources["CALENDAR_TITLE"],
+                           calendar_notice=resources["CALENDAR_NOTICE"])
